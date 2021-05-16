@@ -1,0 +1,19 @@
+plugin: aws_ec2
+regions:
+  - eu-central-1
+cache: yes
+cache_plugin: jsonfile
+cache_timeout: 1800
+cache_connection: /tmp/aws_inventory
+cache_prefix: aws_ec2
+
+filters:
+  tag:ansible_managed:
+    - "true"
+
+keyed_groups:
+  - key: tags['Name']
+    separator: ''
+
+compose:
+  ansible_host: public_dns_name

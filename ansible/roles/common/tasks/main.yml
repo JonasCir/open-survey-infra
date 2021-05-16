@@ -1,0 +1,33 @@
+---
+- name: test connection
+  ansible.builtin.ping:
+
+- name: update && upgrade
+  apt:
+    upgrade: "yes"
+    update_cache: yes
+  become: yes
+  register: update
+  tags:
+    - apt-update-upgrade
+
+- name: install packages
+  apt:
+    pkg:
+      - vim
+      - docker
+      - docker-compose
+  become: yes
+
+- name: Ensure docker deamon is running
+  service:
+    name: docker
+    state: started
+  become: true
+
+- name: adding ubuntu user to docker group
+  user:
+    name: ubuntu
+    groups: docker
+    append: yes
+  become: yes
