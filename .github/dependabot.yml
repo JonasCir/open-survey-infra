@@ -9,7 +9,7 @@ updates:
       interval: "daily"
 
   - package-ecosystem: "docker"
-    directory: "/"
+    directory: "/docker/staging"
     schedule:
       interval: "daily"
 
