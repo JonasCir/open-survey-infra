@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 cd /srv/repo/src/open_survey_tool
-
+ls
 # run migration
 python3 manage.py migrate
 echo "Migration successful"
