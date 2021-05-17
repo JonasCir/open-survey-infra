@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     volumes:
-      - static_volume:/srv/repo/src/open_survey_tool/staticfiles
+      - static_volume:/srv/src/open_survey_tool/staticfiles
     expose:
       - "8080"
     depends_on: [ postgres ]

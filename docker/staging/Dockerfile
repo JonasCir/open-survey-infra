@@ -9,14 +9,16 @@ WORKDIR /srv
 
 RUN apt install -y --no-install-recommends git
 
-# copy everything
-RUN git clone --depth 1 --branch development https://github.com/JonasCir/open-survey-tool.git repo
+RUN git clone --depth 1 --branch development https://github.com/JonasCir/open-survey-tool.git repo && \
+    mv repo/src . && \
+    rm -rf repo && \
+    ls src
 
-WORKDIR repo
 
-RUN python3 -m venv python/venv && \
+RUN python3 -m venv src/python/venv && \
     pip3 install -r src/requirements.txt
 
-COPY setup_and_run.sh /srv/repo/src/config/setup_and_run.sh
+# overwrite startup
+COPY setup_and_run.sh /srv/src/config/setup_and_run.sh
 
-CMD [ "/srv/repo/src/config/setup_and_run.sh" ]
+CMD [ "/srv/src/config/setup_and_run.sh" ]
