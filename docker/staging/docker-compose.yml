@@ -3,6 +3,7 @@ services:
   survey:
     restart: unless-stopped
     build: .
+    # image: ghcr.io/jonascir/open-survey-tool:development
     env_file:
       - .env
     volumes:
